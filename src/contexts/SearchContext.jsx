@@ -15,7 +15,7 @@ export const SearchProvider = ({ children }) => {
     setIsSearch(false);
     setSearch("");
     setSearchResults([]);
-    navigate("/home");
+    navigate("/");
   };
 
   return (

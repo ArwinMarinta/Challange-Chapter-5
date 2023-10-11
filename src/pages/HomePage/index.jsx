@@ -5,6 +5,7 @@ import CarauselSection from "./section/CarauselSection";
 import CardMovie from "../../components/CardMovie";
 import Navbar from "../../components/Navbar";
 import { useSearch } from "../../contexts/SearchContext";
+import Footer from "../../components/Footer";
 
 const HomePage = () => {
   const [popularMovieList, setPopularMovieList] = useState([]);
@@ -58,7 +59,7 @@ const HomePage = () => {
             {isSearchLoading ? (
               <p>Loading...</p>
             ) : (
-              <div className="grid lg:grid-cols-4 gap-x-10 gap-y-8 md:grid-cols-3 grid-cols-1">
+              <div className="grid grid-cols-1 gap-x-10 gap-y-8 md:grid-cols-3 lg:grid-cols-4">
                 {searchResults.length === 0 ? (
                   <p>Movies not found</p>
                 ) : (
@@ -77,17 +78,16 @@ const HomePage = () => {
 
             <section className="container  py-10">
               <h1 className="pb-4 text-2xl font-bold">Popular Movies</h1>
-              <div className="grid lg:grid-cols-4 gap-x-10 gap-y-8 md:grid-cols-3 grid-cols-1">
+              <div className="grid grid-cols-1 gap-x-10 gap-y-8 md:grid-cols-3 lg:grid-cols-4">
                 {popularMovieList.map((movie) => (
                   <CardMovie key={movie.id} movie={movie} />
                 ))}
               </div>
             </section>
-
-            <footer className="text-center py-5 text-lg">Made With 💕 Alivia Kusuma Reza</footer>
           </>
         )}
       </div>
+      <Footer />
     </>
   );
 };

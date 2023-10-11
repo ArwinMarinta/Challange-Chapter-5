@@ -2,13 +2,16 @@
 
 const index = () => {
   return (
-    <div className=" flex h-screen items-center justify-center ">
-      <div className="max-w-3xl  border-2 px-20 ">
-        <div className="flex flex-row justify-between">
-          <h1 className="mb-6 mt-10 text-5xl font-bold">Create Account </h1>
-          <button className="text-center text-5xl font-bold">X</button>
+    <div className=" flex h-screen  items-center justify-center  ">
+      <div className="px-20  sm:w-[600px] md:border-2 ">
+        {/* Buat akun dan tombol leave */}
+        <div className="mb-6 mt-10 flex w-full flex-row justify-between">
+          <h1 className="text-2xl font-bold">Create Account </h1>
+          <button className="text-center text-2xl font-bold">X</button>
         </div>
-        <div className="flex  flex-col gap-6 px-10">
+
+        {/* Form inputan dan button register */}
+        <form className="flex flex-col gap-5 ">
           <div>
             <h2 className="mb-2 text-lg font-bold">Nama Depan</h2>
             <input
@@ -50,11 +53,27 @@ const index = () => {
             />
           </div>
 
-          <div className="mb-10 mt-3">
-            <button className="rounded-xl border-2 bg-red-600 px-4 py-3 font-bold text-white">
-              Register Now
-            </button>
+          <button
+            type="submit"
+            className="rounded-xl border-2 bg-red-600  py-3 font-bold text-white "
+          >
+            Register Now
+          </button>
+        </form>
+
+        {/* Login dengan menggunakan google or facebook */}
+        <div className="mt-8 flex flex-col items-center">
+          <h1 className="text-base font-semibold">Or Sign Up Using</h1>
+          <div className="flex flex-row gap-3">
+            <button>google</button>
+            <button>Facebook</button>
           </div>
+        </div>
+
+        {/* login ketika sudah memiliki akun  */}
+        <div className="mt-6 flex flex-col items-center md:flex-row md:justify-center">
+          <p>Have already an account?</p>
+          <p>Login Here</p>
         </div>
       </div>
     </div>

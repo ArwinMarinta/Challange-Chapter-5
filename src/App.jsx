@@ -7,20 +7,20 @@ import RegisterPage from "./pages/RegisterPage";
 const App = () => {
   const routes = [
     {
-      path: "/login",
-      element: <LoginPage />,
-    },
-    {
-      path: "/register",
-      element: <RegisterPage />,
-    },
-    {
       path: "/",
       element: <HomePage />,
     },
     {
       path: "/details/:id",
       element: <DetailsPage />,
+    },
+    {
+      path: "/login",
+      element: <LoginPage />,
+    },
+    {
+      path: "/register",
+      element: <RegisterPage />,
     },
   ];
 

@@ -2,9 +2,12 @@ import { useSearch } from "../contexts/SearchContext";
 import { BsSearch } from "react-icons/bs";
 import { axiosInstance } from "../lib/axios";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import Search from "../assets/search2.svg";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const [openSearch, setOpenSearch] = useState(false);
 
   const {
     search,
@@ -33,29 +36,64 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="absolute left-10 right-10 top-5 z-50 flex items-center justify-between">
-      <button onClick={handleClearSearch}>
-        <h1 className="text-2xl font-extrabold text-red-600">MovieList</h1>
-      </button>
-      <form
-        onSubmit={handleSubmitSearch}
-        className="relative flex w-80 items-center justify-center text-white"
-      >
-        <input
-          placeholder="Seach any movies"
-          id="search_movie"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="w-full rounded-full border-2 border-red-600 bg-transparent px-5 py-2 outline-none backdrop-blur-md focus:border-red-800"
-        />
-        <button
-          type="submit"
-          className="absolute bottom-1/2 right-2 translate-y-1/2 rounded-full p-2 transition-colors hover:bg-gray-950/30"
-        >
-          <BsSearch className="h-5 w-5" />
+    <div className="absolute left-0 right-0 top-0 z-40 w-full items-center bg-transparent">
+      <nav className="mx-auto flex items-center justify-between  px-4 py-6 lg:px-10">
+        <button onClick={handleClearSearch}>
+          <h1 className="text-lg font-extrabold text-red-600 md:text-6xl">
+            MovieList
+          </h1>
         </button>
-      </form>
-    </nav>
+        <div
+          className="cursor-pointer lg:hidden"
+          onClick={() => setOpenSearch(openSearch ? false : true)}
+        >
+          <img src={Search} className="h-6 w-6" />
+        </div>
+
+        <div className="hidden lg:block">
+          <form
+            onSubmit={handleSubmitSearch}
+            className="relative flex w-80 items-center justify-center"
+          >
+            <input
+              placeholder="Seach any movies"
+              id="search_movie"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-full rounded-full border-2 border-red-600 bg-transparent px-5 py-2 text-white outline-none backdrop-blur-md focus:border-red-800"
+            />
+            <button
+              type="submit"
+              className="absolute bottom-1/2 right-2 translate-y-1/2 rounded-full bg-slate-300 p-2 transition-colors"
+            >
+              <BsSearch className="h-5 w-5" />
+            </button>
+          </form>
+        </div>
+      </nav>
+      <div className={`${openSearch ? "block" : "hidden"} lg:hidden`}>
+        <div className="flex w-full items-center justify-center px-4">
+          <form
+            onSubmit={handleSubmitSearch}
+            className="relative flex w-full items-center justify-center"
+          >
+            <input
+              placeholder="Seach any movies"
+              id="search_movie"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-full rounded-full border-2 border-red-600 bg-transparent px-5 py-2 text-white outline-none backdrop-blur-md focus:border-red-800"
+            />
+            <button
+              type="submit"
+              className="absolute bottom-1/2 right-2 translate-y-1/2 rounded-full bg-slate-300 p-2 transition-colors"
+            >
+              <BsSearch className="h-5 w-5" />
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
   );
 };
 
