@@ -16,9 +16,9 @@ const DetailsPage = () => {
   const detailsMovie = async () => {
     setIsLoading(true);
     try {
-      const response = await axiosInstance.get(`/movie/${id}`);
-      const results = await response.data;
-      setDetailsMovieData(results);
+      const response = await axiosInstance.get(`/api/v1/movie/${id}`);
+      const { data } = await response.data;
+      setDetailsMovieData(data);
       setIsLoading(false);
     } catch (error) {
       console.log(error);

@@ -1,13 +1,21 @@
 import { useSearch } from "../contexts/SearchContext";
 import { BsSearch } from "react-icons/bs";
 import { axiosInstance } from "../lib/axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
 import Search from "../assets/search2.svg";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const [openSearch, setOpenSearch] = useState(false);
+
+  const logout = (event) => {
+    event.preventDefault();
+
+    localStorage.removeItem("token");
+
+    window.location.replace("/");
+  };
 
   const {
     search,
@@ -69,6 +77,22 @@ const Navbar = () => {
               <BsSearch className="h-5 w-5" />
             </button>
           </form>
+        </div>
+        <div className="flex flex-row items-center justify-center gap-4">
+          <Link
+            className="rounded-lg border-2 border-red-700 px-3 py-2 font-bold text-red-700 hover:bg-white"
+            as={Link}
+            to="/login"
+          >
+            Login
+          </Link>
+          <Link
+            className="rounded-lg border-2 border-red-700 bg-red-700 px-3 py-2 font-bold text-white"
+            as={Link}
+            onClick={logout}
+          >
+            Register
+          </Link>
         </div>
       </nav>
       <div className={`${openSearch ? "block" : "hidden"} lg:hidden`}>

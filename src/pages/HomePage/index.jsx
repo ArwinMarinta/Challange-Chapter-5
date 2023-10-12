@@ -23,11 +23,11 @@ const HomePage = () => {
   const popularMovie = async () => {
     setIsLoading(true);
     try {
-      const response = await axiosInstance.get("/movie/popular");
-      const results = await response.data;
+      const response = await axiosInstance.get("api/v1/movie/popular");
+      const { data } = await response.data;
 
-      setPopularMovieList(results.results);
-      setCarauselMovieList(results.results.slice(0, 4));
+      setPopularMovieList(data);
+      setCarauselMovieList(data);
       setIsLoading(false);
     } catch (error) {
       console.log(error);
