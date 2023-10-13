@@ -23,7 +23,7 @@ const HomePage = () => {
   const popularMovie = async () => {
     setIsLoading(true);
     try {
-      const response = await axiosInstance.get("api/v1/movie/popular");
+      const response = await axiosInstance.get("/api/v1/movie/popular");
       const { data } = await response.data;
 
       setPopularMovieList(data);

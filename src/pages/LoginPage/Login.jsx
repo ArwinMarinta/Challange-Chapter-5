@@ -1,7 +1,7 @@
 // import React from 'react'
 import axios from "axios";
 import { useState } from "react";
-import { VITE_API_TEST } from "../../constants/config";
+import { VITE_API_URL } from "../../constants/config";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -10,7 +10,7 @@ const Login = () => {
   const login = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post(`${VITE_API_TEST}/api/v1/auth/login`, {
+      const response = await axios.post(`${VITE_API_URL}/api/v1/auth/login`, {
         email,
         password,
       });

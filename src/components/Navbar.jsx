@@ -32,11 +32,17 @@ const Navbar = () => {
     setIsSearch(true);
     setIsSearchIsLoading(true);
     try {
-      const response = await axiosInstance.get(`/search/movie?query=${search}`);
-      const { results } = response.data;
+      const response = await axiosInstance.get(
+        `/api/v1/search/movie?page=1&query=${search}`,
+      );
+      const { data } = response.data;
       setIsSearch(true);
-      setSearchResults(results);
+      setSearchResults(data);
       setIsSearchIsLoading(false);
+
+      console.log(data.data);
+
+      console.log(data);
     } catch (error) {
       console.log(error);
       setIsSearch(false);
