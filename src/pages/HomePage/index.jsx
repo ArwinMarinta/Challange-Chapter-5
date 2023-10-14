@@ -5,6 +5,7 @@ import CarauselSection from "./section/CarauselSection";
 import CardMovie from "../../components/CardMovie";
 import Navbar from "../../components/Navbar";
 import { useSearch } from "../../contexts/SearchContext";
+import Footer from "../../components/Footer";
 
 const HomePage = () => {
   const [popularMovieList, setPopularMovieList] = useState([]);
@@ -22,11 +23,11 @@ const HomePage = () => {
   const popularMovie = async () => {
     setIsLoading(true);
     try {
-      const response = await axiosInstance.get("/movie/popular");
-      const results = await response.data;
+      const response = await axiosInstance.get("/api/v1/movie/popular");
+      const { data } = await response.data;
 
-      setPopularMovieList(results.results);
-      setCarauselMovieList(results.results.slice(0, 4));
+      setPopularMovieList(data);
+      setCarauselMovieList(data.slice(0, 3));
       setIsLoading(false);
     } catch (error) {
       console.log(error);
@@ -40,7 +41,7 @@ const HomePage = () => {
   return (
     <>
       <Navbar />
-      <div className="bg-slate-950 text-white">
+      <div className=" bg-slate-950 text-white">
         {isSearch ? (
           <section className="container min-h-[100vh] pb-10 pt-28">
             <div className="flex items-center justify-between pb-4">
@@ -58,7 +59,7 @@ const HomePage = () => {
             {isSearchLoading ? (
               <p>Loading...</p>
             ) : (
-              <div className="grid lg:grid-cols-4 gap-x-10 gap-y-8 md:grid-cols-3 grid-cols-1">
+              <div className="grid grid-cols-1 gap-x-10 gap-y-8 md:grid-cols-3 lg:grid-cols-4">
                 {searchResults.length === 0 ? (
                   <p>Movies not found</p>
                 ) : (
@@ -77,17 +78,16 @@ const HomePage = () => {
 
             <section className="container  py-10">
               <h1 className="pb-4 text-2xl font-bold">Popular Movies</h1>
-              <div className="grid lg:grid-cols-4 gap-x-10 gap-y-8 md:grid-cols-3 grid-cols-1">
+              <div className="grid grid-cols-1 gap-x-10 gap-y-8 md:grid-cols-3 lg:grid-cols-4">
                 {popularMovieList.map((movie) => (
                   <CardMovie key={movie.id} movie={movie} />
                 ))}
               </div>
             </section>
-
-            <footer className="text-center py-5 text-lg">Made With 💕 Alivia Kusuma Reza</footer>
           </>
         )}
       </div>
+      <Footer />
     </>
   );
 };
