@@ -6,12 +6,14 @@ import { useEffect, useState } from "react";
 import Search from "../assets/search2.svg";
 import axios from "axios";
 import { token } from "../constants/config";
+import Profile from "../assets/profile.svg";
+import Down from "../assets/down.svg";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const [openSearch, setOpenSearch] = useState(false);
   const [user, setUser] = useState(null);
-
+  const [openProfile, setOpenProfile] = useState(false);
   const logout = (event) => {
     event.preventDefault();
 
@@ -112,23 +114,43 @@ const Navbar = () => {
             </div>
           </>
         )}
-        <div className="flex flex-row items-center justify-center gap-4">
+        <div className="relative flex cursor-default flex-row items-center  justify-center gap-4">
           {user ? (
             <>
-              <Link
-                className="rounded-lg border-2 border-red-700 px-3 py-2 font-bold text-red-700 hover:bg-white"
-                as={Link}
-                to="/login"
-              >
-                me
-              </Link>
-              <Link
-                className="rounded-lg border-2 border-red-700 bg-red-700 px-3 py-2 font-bold text-white"
-                as={Link}
-                onClick={logout}
-              >
-                Logout
-              </Link>
+              <div className="flex w-40 flex-row items-center gap-1 rounded-lg bg-slate-100 pl-2">
+                <img src={Profile} />
+                <div className=" border-red-700 px-3 py-2 text-lg font-bold text-red-700 ">
+                  {user.name.split(" ")[0]}
+                </div>
+                <button
+                  className="absolute right-2 "
+                  onClick={() => setOpenProfile(openProfile ? undefined : true)}
+                >
+                  <img src={Down} />
+                </button>
+              </div>
+
+              {openProfile && (
+                <div className=" absolute left-0 top-14 flex w-full flex-col gap-4 rounded-lg bg-white px-4 py-4">
+                  <Link
+                    className="text-center text-lg font-semibold"
+                    as={Link}
+                    to="/profile"
+                  >
+                    Profile Saya
+                  </Link>
+                  <h1 className="cursor-pointer text-center text-lg font-semibold">
+                    Pengaturan
+                  </h1>
+                  <Link
+                    className="rounded-lg border-2 border-red-700 bg-red-700 px-3 py-2 text-center font-bold text-white"
+                    as={Link}
+                    onClick={logout}
+                  >
+                    Logout
+                  </Link>
+                </div>
+              )}
             </>
           ) : (
             <>

@@ -5,6 +5,7 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import Protected from "./components/Protected";
 import ProtecdToken from "./components/ProtecdToken";
+import ProfilePage from "./pages/ProfilePage";
 
 const App = () => {
   const routes = [
@@ -38,6 +39,14 @@ const App = () => {
         <ProtecdToken>
           <RegisterPage />
         </ProtecdToken>
+      ),
+    },
+    {
+      path: "/profile",
+      element: (
+        <Protected>
+          <ProfilePage />
+        </Protected>
       ),
     },
   ];
