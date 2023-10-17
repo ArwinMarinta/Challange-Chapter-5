@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useSearch } from "../contexts/SearchContext";
 import { BsSearch } from "react-icons/bs";
 import { axiosInstance } from "../lib/axios";
@@ -94,11 +95,10 @@ const Navbar = () => {
           </Link>
           <Link
             className="rounded-lg border-2 border-red-700 bg-red-700 px-3 py-2 font-bold text-white"
-            as={Link}
-            onClick={logout}
+            to="/register"
           >
             Register
-          </Link>
+            </Link>
         </div>
       </nav>
       <div className={`${openSearch ? "block" : "hidden"} lg:hidden`}>
