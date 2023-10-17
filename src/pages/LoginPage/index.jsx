@@ -5,8 +5,9 @@ import { useState } from "react";
 import Navbar from "../../components/Navbar";
 import { axiosLogin } from "../../lib/axios";
 import { Link } from "react-router-dom";
-import Google from "../../assets/google.svg";
+//import Google from "../../assets/google.svg";
 import Facebook from "../../assets/facebook.svg";
+import GoogleLogin from "../../components/GoogleLogin";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -79,9 +80,9 @@ const Login = () => {
           <div className="mt-8 flex flex-col items-center gap-4">
             <h1 className="text-base font-semibold">Or Sign Up Using</h1>
             <div className="flex flex-row gap-3">
-              <button>
-                <img src={Google} />
-              </button>
+              <div>
+                <GoogleLogin/>
+              </div>
               <button>
                 <img src={Facebook} />
               </button>
