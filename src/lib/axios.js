@@ -7,3 +7,8 @@ export const axiosInstance = axios.create({
     Authorization: `Bearer ${token}`,
   },
 });
+
+//login
+export const axiosLogin = axios.create({
+  baseURL: VITE_API_URL,
+});

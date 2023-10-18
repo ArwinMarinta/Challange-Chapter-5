@@ -27,7 +27,7 @@ const HomePage = () => {
       const { data } = await response.data;
 
       setPopularMovieList(data);
-      setCarauselMovieList(data);
+      setCarauselMovieList(data.slice(0, 3));
       setIsLoading(false);
     } catch (error) {
       console.log(error);
@@ -41,7 +41,7 @@ const HomePage = () => {
   return (
     <>
       <Navbar />
-      <div className="bg-slate-950 text-white">
+      <div className=" bg-slate-950 text-white">
         {isSearch ? (
           <section className="container min-h-[100vh] pb-10 pt-28">
             <div className="flex items-center justify-between pb-4">

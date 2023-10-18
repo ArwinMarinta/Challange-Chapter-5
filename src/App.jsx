@@ -3,24 +3,51 @@ import HomePage from "./pages/HomePage";
 import DetailsPage from "./pages/DetailsPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import Protected from "./components/Protected";
+import ProtecdToken from "./components/ProtecdToken";
+import ProfilePage from "./pages/ProfilePage";
 
 const App = () => {
   const routes = [
     {
       path: "/",
-      element: <HomePage />,
+      element: (
+        <Protected>
+          <HomePage />
+        </Protected>
+      ),
     },
     {
       path: "/details/:id",
-      element: <DetailsPage />,
+      element: (
+        <Protected>
+          <DetailsPage />
+        </Protected>
+      ),
     },
     {
       path: "/login",
-      element: <LoginPage />,
+      element: (
+        <ProtecdToken>
+          <LoginPage />
+        </ProtecdToken>
+      ),
     },
     {
       path: "/register",
-      element: <RegisterPage />,
+      element: (
+        <ProtecdToken>
+          <RegisterPage />
+        </ProtecdToken>
+      ),
+    },
+    {
+      path: "/profile",
+      element: (
+        <Protected>
+          <ProfilePage />
+        </Protected>
+      ),
     },
   ];
 
