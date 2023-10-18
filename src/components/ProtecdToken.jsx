@@ -12,7 +12,7 @@ const ProtecdToken = ({ children }) => {
       if (!token) {
         return;
       }
-      await axiosInstance.get("/api/v1/auth/me");
+      await axiosInstance.get("/auth/me");
       navigate("/");
     } catch (error) {
       if (axios.isAxiosError(error)) {

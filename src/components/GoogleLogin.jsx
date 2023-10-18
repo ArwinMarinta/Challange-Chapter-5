@@ -13,11 +13,11 @@ const GoogleLogin = () => {
       const config = {
         method: "post",
         maxBodyLength: Infinity,
-        url: `${VITE_API_URL}/api/v1/auth/google`,
+        url: `${VITE_API_URL}/auth/google`,
         headers: {
           "Content-Type": "application/json",
         },
-        data: data 
+        data: data,
       };
 
       const response = await axios.request(config);

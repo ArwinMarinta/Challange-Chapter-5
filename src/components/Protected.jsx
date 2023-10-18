@@ -12,7 +12,7 @@ const Protected = ({ children }) => {
       if (!token) {
         return navigate("/login");
       }
-      await axiosInstance.get("/api/v1/auth/me");
+      await axiosInstance.get("/auth/me");
     } catch (error) {
       if (axios.isAxiosError(error)) {
         if (error?.response?.status === 401) {
