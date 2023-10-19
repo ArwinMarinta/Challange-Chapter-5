@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { axiosInstance } from "../../lib/axios";
 import { IMAGE_URL_CARD, IMAGE_URL_HEADER } from "../../constants/config";
-import { convertDate } from "../../utils"
+import { convertDate } from "../../utils";
 import { useParams } from "react-router-dom";
 import { BiPlayCircle, BiSolidStar } from "react-icons/bi";
 import DetailsSkeleton from "./skeleton";
@@ -16,7 +16,7 @@ const DetailsPage = () => {
   const detailsMovie = async () => {
     setIsLoading(true);
     try {
-      const response = await axiosInstance.get(`/api/v1/movie/${id}`);
+      const response = await axiosInstance.get(`/movie/${id}`);
       const { data } = await response.data;
       setDetailsMovieData(data);
       setIsLoading(false);
