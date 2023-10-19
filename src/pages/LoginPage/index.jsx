@@ -6,17 +6,24 @@ import Navbar from "../../components/Navbar";
 import { axiosLogin } from "../../lib/axios";
 import { Link } from "react-router-dom";
 //import Google from "../../assets/google.svg";
-import Facebook from "../../assets/facebook.svg";
 import GoogleLogin from "../../components/GoogleLogin";
+import IconShow from "../../assets/show.svg";
+import Facebook from "../../assets/facebook.svg";
+import { toastify } from "../../lib/toastify";
+import SpinnerLoading from "../../components/SpinnerLoading";
+
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
-  const login = async (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
     try {
-      const response = await axiosLogin.post("/api/v1/auth/login", {
+      setIsLoading(true);
+      const response = await axiosLogin.post("/auth/login", {
         email,
         password,
       });
@@ -30,8 +37,14 @@ const Login = () => {
       window.location.replace("/");
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        alert(error?.response?.data?.message);
+        toastify({
+          message: error.response.data.message,
+          type: "error",
+        });
+        setIsLoading(false);
       }
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -46,7 +59,7 @@ const Login = () => {
           </div>
 
           {/* Form inputan dan button register */}
-          <form className="mt-12 flex flex-col gap-5 " onSubmit={login}>
+          <div className="mt-12 flex flex-col gap-5  ">
             <div>
               <h2 className="mb-2 text-lg font-bold">Email Address</h2>
               <input
@@ -57,43 +70,49 @@ const Login = () => {
                 onChange={(event) => setEmail(event.target.value)}
               />
             </div>
-            <div>
-              <h2 className="mb-2 text-lg font-bold">Password</h2>
-              <input
-                className="h-10 w-full rounded-md border-2 pl-2 text-lg"
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(event) => setPassword(event.target.value)}
-              />
-            </div>
+            <div className="relative flex flex-row">
+                <input
+                  className=" h-10 w-full rounded-md border-2 pl-2 text-lg"
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Password"
+                  value={password}
+                  onChange={(event) => setPassword(event.target.value)}
+                />
+                <button
+                  className="absolute bottom-1/2 right-2 translate-y-1/2 "
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  <img src={IconShow} />
+                </button>
+              </div>
+      
 
-            <button
-              type="submit"
-              className="mt-3 rounded-xl border-2 bg-red-600 py-2 font-bold text-white md:py-3 "
-            >
-              LOGIN
-            </button>
-          </form>
+              <button
+                onClick={handleLogin}
+                className="mt-6 flex items-center justify-center rounded-xl border-2 bg-red-600 py-2 font-bold text-white md:py-3 "
+              >
+                {isLoading ? <SpinnerLoading /> : <span>LOGIN</span>}
+              </button>
+          </div>
 
           {/* Login dengan menggunakan google or facebook */}
           <div className="mt-8 flex flex-col items-center gap-4">
-            <h1 className="text-base font-semibold">Or Sign Up Using</h1>
+            <h1 className="text-base font-semibold">Or Sign Up Using:</h1>
             <div className="flex flex-row gap-3">
               <div>
-                <GoogleLogin/>
+                <GoogleLogin />
               </div>
-              <button>
-                <img src={Facebook} />
-              </button>
+              <div>
+                <img src={Facebook} className="h-9" />
+              </div>
             </div>
           </div>
 
-          {/* login ketika sudah memiliki akun  */}
+          {/* login ketika sudah memiliki akun   */}
           <div className=" mt-6 flex flex-col items-center gap-1 md:flex-row md:justify-center ">
             <p>Don't have an account?</p>
             <Link
-              className="font-bold hover:border-b-2 hover:border-black"
+              className="border-b-2 border-black font-bold"
               as={Link}
               to="/register"
             >
