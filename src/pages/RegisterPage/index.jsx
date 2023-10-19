@@ -176,9 +176,8 @@ const RegisterPage = () => {
               Login Here
             </Link>
           </div>
-        </div>
       </div>
-    </>
+    </div>
   );
 };
 
