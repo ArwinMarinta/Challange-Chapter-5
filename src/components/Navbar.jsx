@@ -14,6 +14,14 @@ const Navbar = () => {
   const [openSearch, setOpenSearch] = useState(false);
   const [user, setUser] = useState(null);
   const [openProfile, setOpenProfile] = useState(false);
+
+  const [arrowRotation, setArrowRotation] = useState("rotate-0");
+
+  const toggleProfile = () => {
+    setOpenProfile(!openProfile);
+    setArrowRotation(openProfile ? "rotate-0" : "rotate-180");
+  };
+
   const logout = (event) => {
     event.preventDefault();
 
@@ -38,7 +46,7 @@ const Navbar = () => {
     setIsSearchIsLoading(true);
     try {
       const response = await axiosInstance.get(
-        `/api/v1/search/movie?page=1&query=${search}`,
+        `/search/movie?page=1&query=${search}`,
       );
       const { data } = response.data;
       setIsSearch(true);
@@ -58,7 +66,7 @@ const Navbar = () => {
   const getMe = async () => {
     try {
       if (!token) return;
-      const response = await axiosInstance.get("/api/v1/auth/me");
+      const response = await axiosInstance.get("/auth/me");
       const { data } = response.data;
       setUser(data);
     } catch (error) {
@@ -76,7 +84,7 @@ const Navbar = () => {
 
   return (
     <div className="absolute left-0 right-0 top-0 z-40 w-full items-center bg-transparent">
-      <nav className="mx-auto flex items-center justify-between  px-4 py-6 lg:px-10">
+      <nav className="mx-auto flex items-center justify-between  gap-5 px-4 py-6 lg:px-10">
         <button onClick={handleClearSearch}>
           <h1 className="text-2xl font-extrabold text-red-600 md:text-6xl">
             MovieList
@@ -86,7 +94,7 @@ const Navbar = () => {
         {user && (
           <>
             <div
-              className=" cursor-pointer lg:hidden"
+              className=" d cursor-pointer lg:hidden"
               onClick={() => setOpenSearch(openSearch ? false : true)}
             >
               <img src={Search} className="h-6 w-6" />
@@ -123,8 +131,8 @@ const Navbar = () => {
                   {user.name.split(" ")[0]}
                 </div>
                 <button
-                  className="absolute right-2 "
-                  onClick={() => setOpenProfile(openProfile ? undefined : true)}
+                  className={`absolute right-2 transform ${arrowRotation}`}
+                  onClick={toggleProfile}
                 >
                   <img src={Down} />
                 </button>
