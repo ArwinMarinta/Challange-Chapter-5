@@ -12,7 +12,6 @@ import Facebook from "../../assets/facebook.svg";
 import { toastify } from "../../lib/toastify";
 import SpinnerLoading from "../../components/SpinnerLoading";
 
-
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -70,7 +69,9 @@ const Login = () => {
                 onChange={(event) => setEmail(event.target.value)}
               />
             </div>
-            <div className="relative flex flex-row">
+            <div>
+              <h2 className="mb-2 text-lg font-bold">Password</h2>
+              <div className="relative flex flex-row">
                 <input
                   className=" h-10 w-full rounded-md border-2 pl-2 text-lg"
                   type={showPassword ? "text" : "password"}
@@ -85,14 +86,14 @@ const Login = () => {
                   <img src={IconShow} />
                 </button>
               </div>
-      
+            </div>
 
-              <button
-                onClick={handleLogin}
-                className="mt-6 flex items-center justify-center rounded-xl border-2 bg-red-600 py-2 font-bold text-white md:py-3 "
-              >
-                {isLoading ? <SpinnerLoading /> : <span>LOGIN</span>}
-              </button>
+            <button
+              onClick={handleLogin}
+              className="mt-6 flex items-center justify-center rounded-xl border-2 bg-red-600 py-2 font-bold text-white md:py-3 "
+            >
+              {isLoading ? <SpinnerLoading /> : <span>LOGIN</span>}
+            </button>
           </div>
 
           {/* Login dengan menggunakan google or facebook */}
