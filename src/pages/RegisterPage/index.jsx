@@ -49,10 +49,10 @@ const RegisterPage = () => {
       // Setelah berhasil register, langsung redirect ke halaman home
       const result = response.data;
       localStorage.setItem("token", result.data.token);
-      navigate("/");
+      // navigate("/");
 
       // // Setelah berhasil register, langsung redirect ke halaman login
-      // navigate("/login");
+      navigate("/login");
     } catch (error) {
       toastify({
         message: error.response.data.message,
