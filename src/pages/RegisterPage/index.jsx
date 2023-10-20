@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import IconShow from "../../assets/show.svg";
 
-
 const RegisterPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -22,8 +21,6 @@ const RegisterPage = () => {
     password: "",
     confirmPassword: "",
   });
-
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -55,8 +52,7 @@ const RegisterPage = () => {
       navigate("/");
 
       // // Setelah berhasil register, langsung redirect ke halaman login
-      navigate("/login");
-
+      // navigate("/login");
     } catch (error) {
       toastify({
         message: error.response.data.message,
@@ -71,7 +67,7 @@ const RegisterPage = () => {
   return (
     <>
       <Navbar />
-      <div className=" flex h-screen  items-center justify-center  ">
+      <div className=" flex h-screen  items-center justify-center pt-10 ">
         <div className="px-20 py-10 sm:w-[600px] md:border-2 ">
           <h1 className="flex w-full justify-center pb-8 text-center text-2xl font-bold md:text-4xl">
             CREATE ACCOUNT{" "}
@@ -180,8 +176,8 @@ const RegisterPage = () => {
               Login Here
             </Link>
           </div>
+        </div>
       </div>
-    </div>
     </>
   );
 };
