@@ -68,7 +68,7 @@ const RegisterPage = () => {
     <>
       <Navbar />
       <div className=" flex h-screen  items-center justify-center pt-10 ">
-        <div className="px-20 py-10 sm:w-[600px] md:border-2 ">
+        <div className="px-20 py-10  sm:w-[600px] md:border-2 ">
           <h1 className="flex w-full justify-center pb-8 text-center text-2xl font-bold md:text-4xl">
             CREATE ACCOUNT{" "}
           </h1>

@@ -51,7 +51,7 @@ const Login = () => {
     <>
       <Navbar />
       <div className=" flex h-screen  items-center justify-center  ">
-        <div className="bg-red-400  px-20 py-8 sm:w-[600px] md:border-2 ">
+        <div className="px-20 py-8 sm:w-[600px] md:border-2 ">
           {/* LOGIN */}
           <div className="mb-6 flex w-full justify-center">
             <h1 className="text-4xl font-bold"> LOGIN </h1>
